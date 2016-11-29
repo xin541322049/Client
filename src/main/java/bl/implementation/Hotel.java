@@ -1,190 +1,212 @@
 package bl.implementation;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
+import bl.dataservice.HotelDataService;
 import bl.service.HotelBLService;
-import other.Enterprise;
 import other.HotelService;
-import other.User;
+import po.HotelPO;
 import vo.HotelVO;
 import vo.OrderVO;
+import vo.PromotionVO;
 import vo.RoomVO;
 
-public class Hotel extends User implements HotelBLService{
+import java.util.ArrayList;
 
-	public Order ordermanager = new Order();
-	public Room roommanager = new Room();
-	public Promotion promotionmanager = new Promotion();
+public class Hotel implements HotelBLService {
 
-	private HotelVO VO;
-	private String name;
-	private String address;
-	private int level;
-	private String district;
-	private String introduction;
-	private String tel;
-	private HotelService service;
+	public Order order;
+	public Room room;
+	public Promotion promotion;
 
-	private ArrayList<Enterprise> enterpriseList = new ArrayList<Enterprise>();
+	private HotelVO hotelVO;
+	private HotelPO hotelPO;
+	private HotelDataService hotelDataService;
 
-	public Hotel(){};
-	public Hotel(String name, String address, int level, String district) {
-		//VO = new HotelVO(hotelID, name, address, level, district);
-		setName(name);
-		setAddress(address);
-		setLevel(level);
-		setDistrict(district);
-	}
-	
-
-	private String hotelManager;
-	private String hotelManagerID;
-	public void changeHotelManager(String hoMa,String hoMaID	){
-		setHotelManager(hoMa);
-		setHotelManagerID(hoMaID);
-	}
-
-	
-	public List<OrderVO> getOrderList (String hotelID,Date time){
-		if(getUsername().equals(hotelID)){
-			return ordermanager.getOrderList();
-		} else {
-			return null;
-		}
-	}
-	
-	public OrderVO getOrder(String orderID){
-		return ordermanager.getOrder(orderID);
-	}
-	
-	public HotelVO getHotelInformat (String hotelID){
-		return VO;
-	}
-	
-	public boolean updataOrder (String orderID,OrderVO OR){
-		for(int i=0;i<ordermanager.getOrderList().size();i++){
-			if(ordermanager.getOrderList().get(i).getOrderID().equals(orderID)){
-				ordermanager.orderList.set(i, OR);
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public boolean updataHotelInformat (String hotelID,HotelVO HO){
-		if(getUsername().equals(hotelID)){
-			setVO(HO);
-			return true;
-		}
-		return false;
-	}
-	
-	public boolean check (String orderID,String memberID,String roomID,RoomVO RO,int mark){
-		roommanager.updateRoom(RO);
-		return true;
-	}
-	
-
-	public boolean delay(String orderID) {
-		for(int i=0;i<ordermanager.getOrderList().size();i++){
-			if(ordermanager.getOrderList().get(i).getOrderID().equals(orderID)){
-				if(ordermanager.getOrderList().get(i).getState()==3){
-					ordermanager.getOrderList().get(i).setState(2);
-					return true;
-				}
-				else{
-					return false;
-				}
-			}
+	public Hotel() {
 		
-		}
-		return false;
 	}
-
-	public ArrayList<OrderVO> getUnOrder(String userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<OrderVO> getAlOrder(String userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<OrderVO> getAandCOrder(String userID) {
-		// TODO Auto-generated method stub
+	
+	@Override
+	public String getHotelName() {
 		return null;
 	}
 	
-	public void setVO(HotelVO vO) {
-		VO = vO;
+	@Override
+	public String getHotelAddress() {
+		return null;
 	}
-	public HotelVO getVO() {
-		return VO;
+	
+	@Override
+	public int getHotelLevel() {
+		return 0;
 	}
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
-
+	
+	@Override
 	public String getDistrict() {
-		return district;
+		return null;
+	}
+	
+	@Override
+	public double getHotelScore() {
+		return 0;
+	}
+	
+	@Override
+	public HotelService getHotelService() {
+		return null;
+	}
+	
+	@Override
+	public String getHotelIntroduction() {
+		return null;
+	}
+	
+	@Override
+	public String getHotelManagerName() {
+		return null;
+	}
+	
+	@Override
+	public String getHotelManagerTel() {
+		return null;
+	}
+	
+	@Override
+	public boolean setHotelInformation(HotelVO hotelInformation) {
+		return false;
+	}
+	
+	@Override
+	public ArrayList<RoomVO> getRoomList() {
+		return null;
+	}
+	
+	@Override
+	public boolean addRoom(RoomVO roomVO) {
+		return false;
+	}
+	
+	@Override
+	public boolean deleteRoom(String roomID) {
+		return false;
+	}
+	
+	@Override
+	public boolean updateRoom(String roomID, RoomVO roomVO) {
+		return false;
+	}
+	
+	@Override
+	public ArrayList<PromotionVO> getPromotionList() {
+		return null;
+	}
+	
+	@Override
+	public boolean createPromotion(PromotionVO promotionVO) {
+		return false;
+	}
+	
+	@Override
+	public boolean deletePromotion(String promotionID) {
+		return false;
+	}
+	
+	@Override
+	public boolean updatePromotion(String promotionID, PromotionVO promotionVO) {
+		return false;
+	}
+	
+	@Override
+	public boolean checkin(String orderID, String roomID) {
+		return false;
+	}
+	
+	@Override
+	public boolean checkout(String orderID, String roomID) {
+		return false;
+	}
+	
+	@Override
+	public boolean delay(String orderID) {
+		return false;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getUnexcutedOrderList() {
+		return null;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getExcutedOrderList() {
+		return null;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getAbnormalOrderList() {
+		return null;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getCanceledOrderList() {
+		return null;
 	}
 
-	public void setDistrict(String district) {
-		this.district = district;
-	}
-
-	public String getHotelManager() {
-		return hotelManager;
-	}
-
-	public void setHotelManager(String hotelManager) {
-		this.hotelManager = hotelManager;
-	}
-
-	public String getHotelManagerID() {
-		return hotelManagerID;
-	}
-
-	public void setHotelManagerID(String hotelManagerID) {
-		this.hotelManagerID = hotelManagerID;
-	}
-
-	public String getTel() {
-		return tel;
-	}
-
-	public void setTel(String tel) {
-		this.tel = tel;
-	}
-
-	public String getIntroduction() {
-		return introduction;
-	}
-
-	public void setIntroduction(String introduction) {
-		this.introduction = introduction;
-	}
+//	public void changeHotelManager(String hoMa,String hoMaID){
+//		//setHotelManager(hoMa);
+//		//setHotelManagerID(hoMaID);
+//	}
+//	public List<OrderVO> getOrderList (String hotelID,Date time){
+//		if(getUsername().equals(hotelID)){
+//			return ordermanager.getOrderList();
+//		} else {
+//			return null;
+//		}
+//	}
+//
+//	public OrderVO getOrder(String orderID){
+//		return ordermanager.getOrder(orderID);
+//	}
+//
+//	public HotelVO getHotelInformat (String hotelID){
+//		return hotelVO;
+//	}
+//
+//	public boolean updataOrder (String orderID,OrderVO OR){
+//		for(int i=0;i<ordermanager.getOrderList().size();i++){
+//			if(ordermanager.getOrderList().get(i).getOrderID().equals(orderID)){
+//				ordermanager.orderList.set(i, OR);
+//				return true;
+//			}
+//		}
+//		return false;
+//	}
+	
+//	public boolean updataHotelInformat (String hotelID,HotelVO HO){
+//		if(getUsername().equals(hotelID)){
+//			//setVO(HO);
+//			return true;
+//		}
+//		return false;
+//	}
+//
+//	public boolean check (String orderID,String memberID,String roomID,RoomVO RO,int mark){
+//		roommanager.updateRoom(RO);
+//		return true;
+//	}
+//
+//
+//	public boolean delay(String orderID) {
+//		for(int i=0;i<ordermanager.getOrderList().size();i++){
+//			if(ordermanager.getOrderList().get(i).getOrderID().equals(orderID)){
+//				if(ordermanager.getOrderList().get(i).getState()==3){
+//					ordermanager.getOrderList().get(i).setState(2);
+//					return true;
+//				}
+//				else{
+//					return false;
+//				}
+//			}
+//
+//		}
+//		return false;
+//	}
 }
