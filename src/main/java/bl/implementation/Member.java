@@ -1,154 +1,116 @@
 package bl.implementation;
 
-import java.sql.Date;
-import java.util.ArrayList;
-import java.util.List;
-
+import bl.dataservice.MemberDataService;
 import bl.service.MemberBLService;
+import other.Date;
+import other.Enterprise;
+import other.MemberType;
+import other.User;
 import vo.MemberVO;
 import vo.OrderVO;
-import setup.*;
+
+import java.util.ArrayList;
 
 
 public class Member extends User implements MemberBLService {
 	
-	public Order ordermanager = new Order();
-	public Search searchmanager =new Search();
-
+	private MemberVO memberVO;
 	private ArrayList<OrderVO> orderList;
+	private MemberDataService memberDataService;
+	private Search search;
+	private Reserve reserve;
 
-	private String name;
-	private Date birthday;
-	private String phone;
-	private MemberVO vo;
-	private MemberType type;
-	private Enterprise enterprise;
-	private  Credit credit;
-
-	private int level;
-	private double discount;
-
-	public Member(){};
-	public Member(String ID,String password,Date birthday,String name,String phone,
-			Double credit,MemberType type,Enterprise enterprise) {
-		setID(ID);
-		setPassword(password);
-		setName(name);
-		this.birthday=birthday;
-		setPhone(phone);
-		this.credit=new Credit(credit);
-		setType(type);
-		setEnterprise(enterprise);
-	}
-
-	public MemberVO getMInformation (String memberID) {
-		return vo;
-	}
-	
-	public boolean saveMInformation (String memberID, MemberVO M) {
-		if(memberID.equals(ID)){
-			setVo(vo);
-			return true;
-		}
-		return false;
-	}
-
-	public OrderVO getOrder(String orderID) {
-		// TODO Auto-generated method stub
-		return ordermanager.getOrder(orderID);
-	}
-
-	public ArrayList<OrderVO> gerOrderList(String userID) {
-		// TODO Auto-generated method stub
-		if(ID.equals(userID)){
-			return ordermanager.getOrderList();
-		} else {
-			return null;
-		}
-	}
-
-	public void cancelOrder(String orderID) {
-		// TODO Auto-generated method stub
+	public Member(){
 		
 	}
-
-	public ArrayList<OrderVO> getUnOrder(String userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<OrderVO> getAlOrder(String userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public ArrayList<OrderVO> getAandCOrder(String userID) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 	
-	public String getPassword() {
-		return passWord;
-	}
-	
-	public void setPassword(String password) {
-		this.passWord = password;
-	}
-	
+	@Override
 	public String getName() {
-		return name;
+		return null;
 	}
 	
-	public void setName(String name) {
-		this.name = name;
+	@Override
+	public String getTel() {
+		return null;
 	}
 	
+	@Override
+	public double getCredit() {
+		return 0;
+	}
+	
+	@Override
+	public int getLevel() {
+		return 0;
+	}
+	
+	@Override
+	public double getDiscount() {
+		return 0;
+	}
+	
+	@Override
+	public MemberType getMemberType() {
+		return null;
+	}
+	
+	@Override
 	public Date getBirthday() {
-		return birthday;
+		return null;
 	}
 	
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-	
-	public String getPhone() {
-		return phone;
-	}
-	
-	public void setPhone(String phone) {
-		this.phone = phone;
-	}
-
-	public String getID() {
-		return ID;
-	}
-
-	public void setID(String iD) {
-		ID = iD;
-	}
-
-	public MemberVO getVo() {
-		return vo;
-	}
-
-	public void setVo(MemberVO vo) {
-		this.vo = vo;
-	}
-
-	public MemberType getType() {
-		return type;
-	}
-
-	public void setType(MemberType type) {
-		this.type = type;
-	}
-
+	@Override
 	public Enterprise getEnterprise() {
-		return enterprise;
+		return null;
 	}
-
-	public void setEnterprise(Enterprise enterprise) {
-		this.enterprise = enterprise;
+	
+	@Override
+	public MemberVO getMemberInformation() {
+		return null;
 	}
-
+	
+	@Override
+	public boolean setMemberInformation(MemberVO memberVO) {
+		return false;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getAllOrder() {
+		return null;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getExcutedOrder() {
+		return null;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getAbnormalOrder() {
+		return null;
+	}
+	
+	@Override
+	public ArrayList<OrderVO> getCanceledOrder() {
+		return null;
+	}
+	
+	@Override
+	public void cancelOrder(String orderID) {
+		
+	}
+	
+	@Override
+	public void evaluateOrder(double score, String comment) {
+		
+	}
+	
+	@Override
+	public void startSearch() {
+		search = new Search(memberVO);
+	}
+	
+	@Override
+	public void newReservation() {
+		reserve = new Reserve(memberVO);
+	}
 }
