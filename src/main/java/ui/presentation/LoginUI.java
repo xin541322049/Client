@@ -38,7 +38,7 @@ public class LoginUI extends Application {
     @Override
     public void start (Stage primaryStage) throws Exception {
            primaryStage.setTitle("食宿");
-           Parent root =FXMLLoader.load(getClass().getClassLoader().getResource("ui/presentation/login.fxml"));
+           Parent root =FXMLLoader.load(getClass().getResource("login.fxml"));
            LoginController.setPrimaryStage(primaryStage);
            Scene myScene = new Scene(root,315,520);
            primaryStage.setResizable(false);

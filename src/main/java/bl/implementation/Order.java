@@ -25,12 +25,12 @@ public class Order implements OrderBLService {
 	}
 	
 	@Override
-	public ArrayList<OrderVO> getAllOrder() {
+	public ArrayList<OrderVO> getExcutedOrders() {
 		return null;
 	}
 	
 	@Override
-	public ArrayList<OrderVO> getExcutedOrders() {
+	public ArrayList<OrderVO> getUnexcutedOrders() {
 		return null;
 	}
 	
@@ -45,18 +45,18 @@ public class Order implements OrderBLService {
 	}
 	
 	@Override
-	public void cancelOrder(String orderID) {
-		
+	public boolean cancelOrder(String orderID) {
+		return false;
 	}
 	
 	@Override
-	public void evaluateOrder(double score, String comment) {
-		
+	public boolean evaluateOrder(double score, String comment) {
+		return false;
 	}
 	
 	@Override
-	public void cancelAbnormalOrder(String orderID, double recover) {
-		
+	public boolean cancelAbnormalOrder(String orderID, double recover) {
+		return false;
 	}
 
 //	public OrderVO getOrder(String orderID) {
