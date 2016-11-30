@@ -43,9 +43,9 @@ public class Login implements LoginBLService {
 	public boolean register(MemberVO memberVO) {
 		return false;
 	}
-	
+
 	@Override
-	public UserType getUserType(String memberID) {
+	public UserType getUserType(String userId) {
 		return null;
 	}
 }
