@@ -162,8 +162,13 @@ public class ManagerController{
 		member.setUserID(searchID.getText());
 		member.setName(memberName.getText());
 		member.setTel(memberTel.getText());
-		member.setBirthday(new Date(birthday.getValue().getYear(),birthday.getValue().getMonthValue(),birthday.getValue().getDayOfMonth()));
+		member.setBirthday(new Date(birthday.getValue().getYear()-1900,birthday.getValue().getMonthValue()-1,birthday.getValue().getDayOfMonth()));
 		manager.updateMemberInformation(member);
+		MidStage.close();
+		PromptStage = new Stage();
+		new ManagerPromptUI().start(PromptStage);
+		Label message = (Label)PromptRoot.lookup("#Message");
+		message.setText("客户信息更新成功");
 	}
 	/**
 	 *
@@ -173,7 +178,7 @@ public class ManagerController{
 	private void confirmUpdateSaler(ActionEvent E)throws Exception {
 		TextField searchID=(TextField)root.lookup("#searchID");//搜索时输入的ID
 		TextField salerNameSearch=(TextField)midRoot.lookup("#salerNameSearch");//营销人员名字
-		TextField salerTelSearch=(TextField)midRoot.lookup("#salerTelSearch");//营销人员电话
+		TextField salerTelSearch=(TextField)midRoot.lookup("#tel");//营销人员电话
 		SalerVO saler=new SalerVO();
 		saler.setUserID(searchID.getText());
 		saler.setName(salerNameSearch.getText());

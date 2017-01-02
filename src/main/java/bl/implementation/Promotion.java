@@ -108,7 +108,8 @@ public class Promotion implements PromotionBLService {
 		if(index==-1) {
 			return false;
 		} else {
-			promotionList.remove(index);
+			System.out.println(index);
+			promotionList.remove(index-1);
 			try {
 				return promotionDataService.deletePromotion(promotionID);
 			} catch (RemoteException e) {

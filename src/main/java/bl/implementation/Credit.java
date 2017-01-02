@@ -110,14 +110,16 @@ public class Credit implements CreditBLService {
 	 * 从data层更新数据
 	 */
 	public void updateDataFromFile() {
+        creditChangeList = new ArrayList<>();
 		ArrayList<CreditChangePO> creditChangePOList = null;
 		try {
+            creditChangePOList = creditDataService.getCreditChange(memberID);
 			if(creditChangePOList==null){
 				creditChangePOList = new ArrayList<CreditChangePO>();
 			}
-			creditChangeList = new ArrayList<>();
 			for(int i=0; i<creditChangePOList.size(); i++) {
 				CreditChangePO creditChangePO = creditChangePOList.get(i);
+//                System.out.print(creditChangePO);
 				Date date = creditChangePO.getDate();
 				String orderID = creditChangePO.getOrderID();
 				OrderAction orderAction = creditChangePO.getOrderAction();
