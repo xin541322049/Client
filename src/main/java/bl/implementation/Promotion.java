@@ -139,6 +139,7 @@ public class Promotion implements PromotionBLService {
 			promotionList.set(index, promotionVO);
 			PromotionPO promotionPO = promotionVOtoPO(promotionVO);
 			try {
+				System.out.println(promotionPO.getSaleType());
 				return promotionDataService.updatePromotion(promotionPO);
 			} catch (RemoteException e) {
 				e.printStackTrace();
