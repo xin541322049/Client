@@ -253,12 +253,14 @@ public class Promotion implements PromotionBLService {
 			promotionPO = promotionPOList.get(i);
 			promotionVO = promotionPOtoVO(promotionPO);
 			String relatedID = promotionVO.getRelatedHotelID();
-			if(relatedID==null) {
-				continue;
-			}
-			
-			if(relatedID.equals(hotelID)) {
-				promotionList.add(promotionVO);
+			if(hotelID==null) {
+				if(relatedID==null) {
+					promotionList.add(promotionVO);
+				}
+			} else {
+				if(relatedID!=null && relatedID.equals(hotelID)) {
+					promotionList.add(promotionVO);
+				}
 			}
 		}
 		return true;

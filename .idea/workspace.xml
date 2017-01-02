@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="533d0126-a038-48e2-95b2-ba3b8fe2c142" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/bl/implementation/Reserve.class" afterPath="$PROJECT_DIR$/target/classes/bl/implementation/Reserve.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/bl/implementation/Promotion.class" afterPath="$PROJECT_DIR$/target/classes/bl/implementation/Promotion.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bl/implementation/Reserve.java" afterPath="$PROJECT_DIR$/src/main/java/bl/implementation/Reserve.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/bl/implementation/Promotion.java" afterPath="$PROJECT_DIR$/src/main/java/bl/implementation/Promotion.java" />
     </list>
     <ignored path="Client.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,8 +63,8 @@
       <file leaf-file-name="Promotion.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/bl/implementation/Promotion.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2301">
-              <caret line="112" column="64" selection-start-line="112" selection-start-column="64" selection-end-line="112" selection-end-column="64" />
+            <state relative-caret-position="338">
+              <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -91,10 +91,8 @@
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Login.java" />
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Manager.java" />
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Member.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Credit.java" />
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Rank.java" />
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Saler.java" />
-        <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Promotion.java" />
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Search.java" />
         <option value="$PROJECT_DIR$/src/main/java/ui/presentation/LoginUI.java" />
         <option value="$PROJECT_DIR$/src/main/java/rmi/RemoteHelper.java" />
@@ -102,6 +100,8 @@
         <option value="$PROJECT_DIR$/src/main/java/ui/controller/MemberController.java" />
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Order.java" />
         <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Reserve.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Credit.java" />
+        <option value="$PROJECT_DIR$/src/main/java/bl/implementation/Promotion.java" />
       </list>
     </option>
   </component>
@@ -776,7 +776,7 @@
       <workItem from="1483277401384" duration="871000" />
       <workItem from="1483281239237" duration="2634000" />
       <workItem from="1483284315109" duration="566000" />
-      <workItem from="1483318215045" duration="4906000" />
+      <workItem from="1483318215045" duration="6298000" />
     </task>
     <servers />
   </component>
@@ -789,7 +789,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="29097000" />
+    <option name="totallyTimeSpent" value="30489000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
@@ -1152,14 +1152,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/bl/implementation/Credit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="288">
-          <caret line="116" column="0" selection-start-line="116" selection-start-column="0" selection-end-line="116" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/ui/controller/MemberController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="141">
@@ -1196,10 +1188,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/bl/implementation/Credit.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="112" column="59" selection-start-line="112" selection-start-column="59" selection-end-line="112" selection-end-column="59" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/bl/implementation/Promotion.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2301">
-          <caret line="112" column="64" selection-start-line="112" selection-start-column="64" selection-end-line="112" selection-end-column="64" />
+        <state relative-caret-position="338">
+          <caret line="255" column="0" selection-start-line="255" selection-start-column="0" selection-end-line="255" selection-end-column="0" />
           <folding />
         </state>
       </provider>

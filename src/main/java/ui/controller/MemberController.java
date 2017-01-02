@@ -692,6 +692,7 @@ public class MemberController{
             ComboBox<roomState> discountList = (ComboBox<roomState>) midRoot.lookup("#discountList");
             ArrayList<PromotionVO> used = new ArrayList<PromotionVO>();
             used.add(reserve.getPromotion());
+            discountList.getItems().clear();
             for(int i = 0 ; i < PromotionList.size() ; i++  ){
                 if(PromotionList.get(i).getPromotionName().equals(reserve.getPromotion().getPromotionName())){
                 }
@@ -700,7 +701,11 @@ public class MemberController{
                 }
             }
             for(int i = 0 ; i < used.size() ; i++  ){
-                discountList.getItems().add(new roomState(PromotionList.get(i).getPromotionName()));
+                if(used.get(i).getPromotionName().equals("")){
+                    discountList.getItems().add(new roomState("商圈折扣"));
+                }else{
+                    discountList.getItems().add(new roomState(used.get(i).getPromotionName()));
+                }
             }
 
             discountList.getSelectionModel().select(0);
