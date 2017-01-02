@@ -165,7 +165,7 @@ public class Room implements RoomBLService {
 	 */
 	@Override
 	public ArrayList<RoomVO> getDailyRoomList(Date date) {
-		roomDataService = RemoteHelper.getInstance().getRoomDataService();
+//		roomDataService = RemoteHelper.getInstance().getRoomDataService();
 		ArrayList<RoomPO> roomPOList = null;
 		try {
 //			System.out.println(hotelID);
@@ -174,9 +174,9 @@ public class Room implements RoomBLService {
 //			Calendar calendar = Calendar.getInstance();
 //			calendar.setTime(date);
 //			System.out.println(calendar.toString());
-			if(roomDataService==null) {
-				roomDataService = RemoteHelper.getInstance().getRoomDataService();
-			}
+//			if(roomDataService==null) {
+//				roomDataService = RemoteHelper.getInstance().getRoomDataService();
+//			}
 			roomPOList = roomDataService.getRoomsByDate(date, hotelID);
 //			System.out.println(roomPOList.size());
 		} catch (RemoteException e) {

@@ -651,7 +651,7 @@ public class MemberController{
         reserve.setLatestArriveTime(DateInTime);
         reserve.setSelectedRoom(temRoom);
         reserve.setNumberOfRoom(Integer.parseInt(num.getText().toString()));
-        reserve.setNumberOfClient(Integer.parseInt(numP.getText().toString()));
+		reserve.setNumberOfClient(Integer.parseInt(numP.getText().toString()));
         reserve.setChekckoutTime(DateOutTime);
         reserve.setClientName(member.getName());
         reserve.setClientTel(member.getTel());
@@ -684,12 +684,18 @@ public class MemberController{
             Label inTime = (Label) midRoot.lookup("#inTime");
             Label outTime = (Label) midRoot.lookup("#outTime");
             Label discount = (Label) midRoot.lookup("#discount");
+			TextField numP = (TextField)midRoot.lookup("#numP");
             ComboBox<roomState> discountList = (ComboBox<roomState>) midRoot.lookup("#discountList");
-            for (int i = 0; i < PromotionList.size(); i++) {
-                discountList.getItems().add(new roomState(PromotionList.get(i).getPromotionName()));
+            discountList.getItems().add(new roomState(reserve.getPromotion().getPromotionName()));
+            for(int i = 0 ; i < PromotionList.size() ; i++  ){
+                if(PromotionList.get(i).getPromotionName().equals(reserve.getPromotion().getPromotionName())){
+                }
+                else{
+                    discountList.getItems().add(new roomState(PromotionList.get(i).getPromotionName()));
+                }
             }
             discountList.getSelectionModel().select(0);
-            discount.setText("" + PromotionList.get(0).getDiscount());
+            discount.setText(""+reserve.getPromotion().getDiscount());
             discountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<roomState>() {
                 @Override
                 public void changed(ObservableValue<? extends roomState> observable, roomState oldValue, roomState newValue) {
@@ -697,6 +703,7 @@ public class MemberController{
                 }
             });
             name.setText(temRoom.getRoomName());
+			numP.setText("1");
             type.setText("" + temRoom.getRoomType());
             inTime.setText("" + LocalDateInTime.getYear() + "-" + LocalDateInTime.getMonthValue() + "-" + LocalDateInTime.getDayOfMonth());
             outTime.setText("" + LocalDateOutTime.getYear() + "-" + LocalDateOutTime.getMonthValue() + "-" + LocalDateOutTime.getDayOfMonth());

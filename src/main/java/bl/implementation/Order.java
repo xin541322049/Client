@@ -53,6 +53,7 @@ public class Order implements OrderBLService {
 	 */
 	@Override
 	public ArrayList<OrderVO> getOrderList() {
+		updateDataFromFile();
 		return orderList;
 	}
 	
@@ -376,10 +377,15 @@ public class Order implements OrderBLService {
 		year = year.substring(2);
 		
 		int m = calendar.get(Calendar.MONTH);
-		if(m<12) {
-			m+=12;
+		if(m==12) {
+			m=1;
+		} else {
+			m++;
 		}
 		String month = String.valueOf(m);
+		if(m<10) {
+			month = "0" + month;
+		}
 		
 		int d = calendar.get(Calendar.DATE);
 		String day = String.valueOf(d);
@@ -438,7 +444,6 @@ public class Order implements OrderBLService {
 	
 	@Override
 	public boolean checkin(String orderID) {
-		updateDataFromFile();
 		OrderVO orderVO = getOrderInformation(orderID);
 		if(orderVO==null) {
 			return false;
@@ -450,12 +455,17 @@ public class Order implements OrderBLService {
 	
 	@Override
 	public boolean checkout(String orderID) {
-		updateDataFromFile();
 		OrderVO orderVO = getOrderInformation(orderID);
 		if(orderVO==null) {
 			return false;
 		}
 		orderVO.setActualCheckoutTime(new Date());
+		
+		Credit credit = new Credit(orderVO.getMemberID());
+		double change = orderVO.getPrice();
+		double result = credit.getCredit()+change;
+		CreditChangeVO creditChangeVO = new CreditChangeVO(new Date(), orderID, OrderAction.ExecuteOrder, change, result);
+		credit.addCreditChange(creditChangeVO);
 		return updateOrderToFile(orderVO);
 	}
 	
