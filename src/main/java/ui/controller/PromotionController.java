@@ -1,6 +1,8 @@
 package ui.controller;
 
 
+import bl.implementation.Promotion;
+import bl.implementation.Saler;
 import bl.service.PromotionBLService;
 import bl.service.SalerBLService;
 import bl.stub.PromotionBLStub;
@@ -64,7 +66,7 @@ public class PromotionController {
     public static void setPromotion(PromotionBLService p) {
         promotion = p;
     }
-
+    public static ArrayList<PromotionVO> list;
 
     /**
      * 关闭提示框的响应
@@ -80,10 +82,12 @@ public class PromotionController {
     @FXML
     private void onPromotion(ActionEvent E) throws Exception{
         new SalerPromotionUI().start(primaryStage);
+        promotion = new Promotion();
+        ArrayList<PromotionVO> list = promotion.getWebDatePromotionList();
         TableView promotionTable = (TableView)root.lookup("#promotionTable");//营销策略列表
         ObservableList<TableData> dataForSalerPromotion = FXCollections.observableArrayList();
         ObservableList<TableColumn> tableList = promotionTable.getColumns();
-        ArrayList<PromotionVO> list = promotion.getWebDatePromotionList();
+
         SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");
        for(int i=0;i<list.size();i++){
             dataForSalerPromotion.add(new TableData(list.get(i).getPromotionName(),sdf.format(list.get(i).getStartDate()),
@@ -122,6 +126,8 @@ public class PromotionController {
      */
     @FXML
     private void onRank(ActionEvent E) throws Exception{
+        saler = new Saler(saler.getSalerInformation().getUserID());
+        promotion = new Promotion();
         new SalerVIPUI().start(primaryStage);
         TableView districtTable = (TableView)root.lookup("#districtTable");//商圈折扣列表
         ObservableList<TableData> dataForDistrict = FXCollections.observableArrayList();
@@ -218,6 +224,8 @@ public class PromotionController {
             PromotionVO promotion=list.get(i);
             districtUpdate.setText(promotion.getDistrict());
             VipDiscountUpdate.setText(String.valueOf(promotion.getDiscount()));
+
+            onRank(E);
         }
     }
     /**
@@ -241,6 +249,7 @@ public class PromotionController {
             PromotionVO promotion=list.get(i);
             promotion.setDistrict(districtUpdate.getText());
             promotion.setDiscount(Double.parseDouble(VipDiscountUpdate.getText()));
+            saler.updatePromotion(promotion);
             minprimaryStage.close();
             onRank(E);
         }
@@ -448,6 +457,7 @@ public class PromotionController {
             dateDiscountUpdate.setText(String.valueOf(promotion.getDiscount()));
             checkOutDateUpdate.setValue(promotion.getEndDate().toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
             checkOutDateUpdate.setDayCellFactory(dateBefore(checkInDateUpdate));
+
          }
     }
     /**
@@ -521,11 +531,11 @@ public class PromotionController {
             ArrayList<PromotionVO> list = promotion.getWebDatePromotionList();
             PromotionVO promotion=list.get(i);
             saler.deletePromotion(promotion.getPromotionID());
+//            System.out.println(saler.deletePromotion(promotion.getPromotionID()));
             promptStage = new Stage();
             new SalerPromptUI().start(promptStage);
             Label message = (Label) promptroot.lookup("#Message");
             message.setText("删除成功");
-
             onPromotion(E);
         }
 

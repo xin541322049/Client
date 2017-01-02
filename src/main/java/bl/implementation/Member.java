@@ -209,6 +209,7 @@ public class Member implements MemberBLService {
 	public boolean updateMemberInformation(MemberVO memberVO) {
 		this.memberVO = memberVO;
 		try {
+			System.out.print(memberDataService);
 			return memberDataService.updateMember(memberVOtoPO(memberVO));
 		} catch (RemoteException e) {
 			e.printStackTrace();
