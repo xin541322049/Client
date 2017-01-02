@@ -681,6 +681,7 @@ public class HotelController {
         change.setStartDate(new Date(checkInDate.getValue().getYear()-1900,checkInDate.getValue().getMonthValue()-1,checkInDate.getValue().getDayOfMonth()));
         change.setEndDate(new Date(checkOutDate.getValue().getYear()-1900,checkOutDate.getValue().getMonthValue()-1,checkOutDate.getValue().getDayOfMonth()));
         change.setDiscount(Double.parseDouble(dateDiscount.getText().toString()));
+        change.setSaleType(SaleType.Date);
         promotion.updatePromotion(change);
         minPrimaryStage.close();
         onPromotionManager(E);
@@ -810,6 +811,7 @@ public class HotelController {
         change.setPromotionName(Pname.getText().toString());
         change.setEnterprise(name.getText());
         change.setDiscount(Double.parseDouble(discount.getText().toString()));
+        change.setSaleType(SaleType.Enterprise);
         promotion.updatePromotion(change);
         minPrimaryStage.close();
         onCompanyPromotion(E);
