@@ -113,6 +113,7 @@ public class Credit implements CreditBLService {
 		ArrayList<CreditChangePO> creditChangePOList = null;
 		try {
 			creditChangePOList = creditDataService.getCreditChange(memberID);
+			System.out.print(creditChangePOList);
 			creditChangeList = new ArrayList<>();
 			for(int i=0; i<creditChangePOList.size(); i++) {
 				CreditChangePO creditChangePO = creditChangePOList.get(i);
