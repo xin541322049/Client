@@ -310,6 +310,7 @@ public class MemberController{
     @FXML
     private void onOrderInfor(ActionEvent E)throws Exception {
         new MemberUnprocessedOrderUI().start(primaryStage);
+        order = new Order(member.getMemberInformation().getUserID());
         this.OrderList = order.getUnexcutedOrders();
         orderManager(OrderList);
     }
@@ -322,6 +323,7 @@ public class MemberController{
     @FXML
  private void onExecuteOrder(ActionEvent E)throws Exception {
      new MemberProcessedOrderUI().start(primaryStage);
+        order = new Order(member.getMemberInformation().getUserID());
         this.OrderList = order.getExcutedOrders();
         orderManager(OrderList);
  }
@@ -334,6 +336,7 @@ public class MemberController{
     @FXML
  private void onCancelOrder(ActionEvent E)throws Exception {
      new MemberCancelOrder().start(primaryStage);
+        order = new Order(member.getMemberInformation().getUserID());
      this.OrderList = order.getCanceledOrders();
      orderManager(OrderList);
  }
@@ -346,6 +349,7 @@ public class MemberController{
      @FXML
  private void onAbnormalOrder(ActionEvent E)throws Exception {
      new MemberAbnormalOrder().start(primaryStage);
+         order = new Order(member.getMemberInformation().getUserID());
      this.OrderList = order.getAbnormalOrders();
      orderManager(OrderList);
  }
@@ -686,20 +690,26 @@ public class MemberController{
             Label discount = (Label) midRoot.lookup("#discount");
 			TextField numP = (TextField)midRoot.lookup("#numP");
             ComboBox<roomState> discountList = (ComboBox<roomState>) midRoot.lookup("#discountList");
-            discountList.getItems().add(new roomState(reserve.getPromotion().getPromotionName()));
+            ArrayList<PromotionVO> used = new ArrayList<PromotionVO>();
+            used.add(reserve.getPromotion());
             for(int i = 0 ; i < PromotionList.size() ; i++  ){
                 if(PromotionList.get(i).getPromotionName().equals(reserve.getPromotion().getPromotionName())){
                 }
                 else{
-                    discountList.getItems().add(new roomState(PromotionList.get(i).getPromotionName()));
+                    used.add(PromotionList.get(i));
                 }
             }
+            for(int i = 0 ; i < used.size() ; i++  ){
+                discountList.getItems().add(new roomState(PromotionList.get(i).getPromotionName()));
+            }
+
             discountList.getSelectionModel().select(0);
             discount.setText(""+reserve.getPromotion().getDiscount());
             discountList.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<roomState>() {
                 @Override
                 public void changed(ObservableValue<? extends roomState> observable, roomState oldValue, roomState newValue) {
-                    discount.setText("" + PromotionList.get(discountList.getSelectionModel().getSelectedIndex()).getDiscount());
+                    discount.setText("" + used.get(discountList.getSelectionModel().getSelectedIndex()).getDiscount());
+                    reserve.setPromotion(used.get(discountList.getSelectionModel().getSelectedIndex()));
                 }
             });
             name.setText(temRoom.getRoomName());
