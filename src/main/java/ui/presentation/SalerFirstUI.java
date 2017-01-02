@@ -19,6 +19,7 @@ public class SalerFirstUI  extends Application {
         PromotionController.setPrimaryStage(primaryStage);
         PromotionController.setRoot(root);
         Scene myScene = new Scene(root,1180,660);
+        primaryStage.setX(450);
         primaryStage.setResizable(false);
         primaryStage.setScene(myScene);
         primaryStage.show();
