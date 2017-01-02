@@ -94,12 +94,15 @@ public class RemoteHelper {
 			return true;
 		} catch (RemoteException e) {
 			e.printStackTrace();
+			System.out.println("连接到服务器失败");
 			return false;
 		} catch (NotBoundException e) {
 			e.printStackTrace();
+			System.out.println("连接到服务器失败");
 			return false;
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
+			System.out.println("连接到服务器失败");
 			return false;
 		}
 	}
@@ -120,13 +123,7 @@ public class RemoteHelper {
 //		}
 		
 		RemoteHelper remoteHelper = RemoteHelper.getInstance();
-		System.out.println(remoteHelper.connect());
-		boolean b = remoteHelper.isConnected();
-		if(b) {
-			System.out.println("连接到服务器成功");
-		} else {
-			System.out.println("连接到服务器失败");
-		}
+		remoteHelper.connect();
 //		try {
 //			System.out.println(remoteHelper.getHotelDataService().getAvailableHotelID());
 //			System.out.println(remoteHelper.getMemberDataService().getAvailableMemberID());
