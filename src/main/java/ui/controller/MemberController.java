@@ -700,7 +700,12 @@ public class MemberController{
                 }
             }
             for(int i = 0 ; i < used.size() ; i++  ){
-                discountList.getItems().add(new roomState(PromotionList.get(i).getPromotionName()));
+                if(used.get(i).getPromotionName().equals("")){
+                    discountList.getItems().add(new roomState("商圈折扣"));
+                }else{
+                    discountList.getItems().add(new roomState(used.get(i).getPromotionName()));
+                }
+
             }
 
             discountList.getSelectionModel().select(0);
