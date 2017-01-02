@@ -123,11 +123,16 @@ public class Reserve implements ReserveBLService {
 		if(roomVO==null) {
 			return 0;
 		} else {
+			int days = 0;
+			for(Date date = checkinTime; date.before(checkoutTime); date=Search.nextDay(date)) {
+				days++;
+			}
+			
 			if(promotionVO==null) {
-				price = roomVO.getPrice()*numberOfRooms;
+				price = roomVO.getPrice()*numberOfRooms*days;
 				return price;
 			} else {
-				price = promotionVO.calculatePrice(roomVO.getPrice())*numberOfRooms;
+				price = promotionVO.calculatePrice(roomVO.getPrice())*numberOfRooms*days;
 				return price;
 			}
 		}
